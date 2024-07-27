@@ -1,3 +1,5 @@
+"use client";
+import { useFilterIngredients } from "@/hooks/useFilterIngredients";
 import { Input } from "../ui";
 import { CheckboxFilterGroup } from "./checkbox-filters-group";
 import { FilterCheckbox } from "./filter-checkbox";
@@ -10,6 +12,7 @@ type Props = {
 };
 
 export const Filters: React.FC<Props> = ({ className }) => {
+  const { items } = useFilterIngredients();
   return (
     <div className={className}>
       <Title text="Фільтрація" size="sm" className="mb-5 font-bold" />
@@ -35,62 +38,9 @@ export const Filters: React.FC<Props> = ({ className }) => {
             title="Інгридієнти"
             className="mt-5"
             limit={6}
-            defaultItems={[
-              {
-                text: "Сирний соус",
-                value: "1",
-              },
-              {
-                text: "Мацарела",
-                value: "2",
-              },
-              {
-                text: "Часник",
-                value: "3",
-              },
-              {
-                text: "Солені огірки",
-                value: "4",
-              },
-              {
-                text: "Цибуля",
-                value: "5",
-              },
-              {
-                text: "Томати",
-                value: "6",
-              },
-            ]}
-            items={[
-              {
-                text: "Сирний соус",
-                value: "1",
-              },
-              {
-                text: "Мацарела",
-                value: "2",
-              },
-              {
-                text: "Часник",
-                value: "3",
-              },
-              {
-                text: "Солені огірки",
-                value: "4",
-              },
-              {
-                text: "Цибуля",
-                value: "5",
-              },
-              {
-                text: "Томати",
-                value: "6",
-              },
-              {
-                text: "Томати",
-                value: "7",
-              },
-            ]}
+            defaultItems={items.slice(0, 5)}
+            items={items}
+            loading={true}
           />
         </div>
       </div>
