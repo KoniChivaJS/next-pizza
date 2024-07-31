@@ -1,17 +1,21 @@
+"use client";
 import { cn } from "@/lib/utils";
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "./container";
 import Image from "next/image";
 import { Button } from "../ui";
 import { ArrowRight, ShoppingCart, User } from "lucide-react";
 import Link from "next/link";
 import { SearchInput } from "./search-input";
+import { ProfileButton } from "./profile-button";
+import { AuthModal } from "./modals/auth-modal/auth-modal";
 
 type Props = {
   classname?: string;
 };
 
 export const Header: React.FC<Props> = ({ classname }) => {
+  const [openAuthModal, setAuthModal] = useState(false);
   return (
     <header className={cn("border border-b", classname)}>
       <Container className="flex items-center justify-between py-8">
@@ -30,10 +34,8 @@ export const Header: React.FC<Props> = ({ classname }) => {
         </div>
 
         <div className="flex items-center gap-3">
-          <Button variant="outline" className="flex items-center gap-1">
-            <User size={16} />
-            Ввійти
-          </Button>
+          <AuthModal open={openAuthModal} onClose={() => setAuthModal(false)} />
+          <ProfileButton onClickSignIn={() => setAuthModal(true)} />
           <div>
             <Button className="relative group">
               <b>520 ₴</b>

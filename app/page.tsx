@@ -1,12 +1,15 @@
 import { Container } from "@/components/shared/container";
 import { Filters } from "@/components/shared/filters";
+import { Header } from "@/components/shared/header";
 import { ProductsGroupList } from "@/components/shared/products-group-list";
 import { Title } from "@/components/shared/title";
 import { TopBar } from "@/components/shared/top-bar";
 
 export default function Home() {
   return (
-    <>
+    <main className="min-h-screen">
+      <Header />
+
       <Container className="mt-10">
         <Title text="Всі піци" size="lg" className="font-extrabold" />
       </Container>
@@ -130,6 +133,6 @@ export default function Home() {
           </div>
         </div>
       </Container>
-    </>
+    </main>
   );
 }
